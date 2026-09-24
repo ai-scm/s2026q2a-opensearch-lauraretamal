@@ -284,18 +284,3 @@ GET productos/_search
   "aggregations": {}            // Resultados de agregaciones
 }
 ```
-
-### Significado de campos
-- **took**: Tiempo que tardó la query en milisegundos
-- **_shards.successful**: Shards que respondieron exitosamente
-- **hits.total.value**: Número total de documentos que coinciden
-- **_score**: Relevancia del documento (1.0 = perfecto match)
-- **aggregations**: Grupos y métricas calculadas
-
-## Notas importantes
-
-1. **Autenticación:** Usar `-u admin:OpenSearch@2026` en todos los curl
-2. **HTTPS:** Usar `-k` para ignorar certificados autofirmados
-3. **Content-Type:** Agregar `-H "Content-Type: application/json"` para POST/PUT
-4. **Tamaño de respuesta:** Usar `"size": 0` en agregaciones para obtener solo las buckets
-5. **Campos con .keyword:** En algunos índices, usar `field.keyword` para búsquedas exactas
