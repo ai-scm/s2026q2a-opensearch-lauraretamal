@@ -17,10 +17,6 @@ Se cargaron dos conjuntos de datos:
 
 **Total documentos:** 2,780
 
-**Tamaño:** ~9 MB
-
-**Período:** 2020-01-01 a 2024-01-01
-
 **Método de carga:** OpenSearch Dashboards UI (Sample data)
 
 ### Estructura (Mapping)
@@ -100,8 +96,6 @@ GET opensearch_dashboards_sample_data_logs/_search
 **Total documentos:** 5
 
 **Método de carga:** API REST con curl
-
-**Fecha de creación:** 2026-09-24
 
 ### Estructura (Mapping)
 
