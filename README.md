@@ -122,7 +122,3 @@ s2026q2a-opensearch-jia/
 - Terminal/bash
 - Navegador web
 - curl (para queries REST)
-
-## Tiempo empleado
-
-2-3 horas según lo estimado
