@@ -144,11 +144,3 @@ Los filtros se aplican a nivel de dashboard y afectan todas las visualizaciones 
 - Actualizaciones en tiempo real
 
 ---
-
-## Mejoras potenciales
-
-1. Agregar visualización de geografía (mapa de IPs)
-2. Incluir gráfico de usuarios únicos
-3. Alertas automáticas para eventos anómalos
-4. Dashboard comparativo (períodos diferentes)
-5. Exportar reportes en PDF
