@@ -33,8 +33,8 @@ curl -u admin:OpenSearch@2026 -k https://localhost:9200
 - Método: Instalado desde OpenSearch Dashboards UI
 
 #### Ejemplo adicional personalizado
-- Índice: `productos`
-- Total documentos: 5
+- Índice: `ecommerce`
+- Total documentos: 15
 
 ### 3. Dashboard con visualizaciones
 
@@ -42,37 +42,12 @@ curl -u admin:OpenSearch@2026 -k https://localhost:9200
 
 **Visualizaciones creadas:**
 
-1. **Total de Logs** (Métrica)
-   - Tipo: Metric
-   - Valor sin filtros: 2,780 documentos
-   - Descripción: Conteo total de registros de logs
-
-2. **Logs por tiempo** (Gráfico de líneas)
-   - Tipo: Line
-   - Configuración: Date Histogram por timestamp (30 segundos)
-   - Descripción: Conteo de logs agrupados por intervalos de tiempo
-
-3. **Códigos de respuesta HTTP** (Gráfico de barras vertical)
-   - Tipo: Vertical Bar
-   - Configuración: Terms aggregation por response
-   - Descripción: Distribución de códigos de respuesta HTTP
+1. **Distribución de Respuestas HTTP** (Pie Chart)
+2. **Heatmap Actividad por Hora y Host**
+3. **Respuestas por Código HTTP** (Metric)
+4. **Tabla de Hosts y Solicitudes** (Data Table)
 
 ### 4. Búsqueda facetada
 
 **Filtros dinámicos implementados:**
-- Filtro ejemplo: `request: /apm`
-- Resultado: Datos reducidos de 2,780 a 355 documentos
-- Todas las visualizaciones se actualizan automáticamente
-
-**Navegación:**
-- Los filtros se combinan dinámicamente
-- Cambios en tiempo real en el dashboard
-
-### 5. Exploración del API REST
-
-Todas las queries ejecutadas vía:
-- **curl** desde línea de comandos
-- **Dev Tools** en OpenSearch Dashboards
-
-Consulta `API-REST-QUERIES.md` para detalles completos.
-
+Dashboard interactivo con filtros dinámicos 
