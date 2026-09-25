@@ -87,152 +87,55 @@ GET opensearch_dashboards_sample_data_logs/_search
 
 ---
 
-## Ejemplo Personalizado: productos
+# Dataset Personalizado: E-commerce Orders
 
-### Información general
+## Descripción
+Dataset de órdenes de compra en línea con información de clientes, productos, montos y estados.
 
-**Índice:** productos
+## Estructura
 
-**Total documentos:** 5
+### Índice: `ecommerce_orders`
 
-**Método de carga:** API REST con curl
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| order_id | text | ID de la orden (ORD-001, ORD-002, etc) |
+| customer | text | Nombre del cliente |
+| email | text | Email del cliente |
+| product | text | Nombre del producto |
+| category | keyword | Categoría (Electronics, Fashion) |
+| amount | long | Monto en euros |
+| quantity | long | Cantidad de unidades |
+| status | keyword | Estado (completed, pending, failed, cancelled) |
+| timestamp | date | Fecha y hora de la orden |
+| location | keyword | Ubicación del cliente |
 
-### Estructura (Mapping)
+## Datos Cargados
 
-```json
-{
-  "settings": {
-    "number_of_shards": 1,
-    "number_of_replicas": 0
-  },
-  "mappings": {
-    "properties": {
-      "nombre": {"type": "text"},
-      "precio": {"type": "float"},
-      "categoria": {"type": "keyword"},
-      "stock": {"type": "integer"},
-      "fecha_creacion": {"type": "date"}
-    }
-  }
-}
-```
+**Total: 15 documentos**
 
-### Documentos
+### Por Categoría:
+- **Electronics:** 8 órdenes (Laptops, iPhones, TVs, etc)
+- **Fashion:** 7 órdenes (Shoes, T-shirts, Dresses, Bags, etc)
 
-| ID | Nombre | Precio | Categoría | Stock | Fecha |
-|----|--------|--------|-----------|-------|-------|
-| 1 | Laptop Dell XPS 13 | $1200.50 | Electrónica | 15 | 2026-01-15 |
-| 2 | Mouse Logitech MX Master | $99.99 | Accesorios | 50 | 2026-01-20 |
-| 3 | Monitor Samsung 4K 27 | $450.00 | Electrónica | 8 | 2026-02-01 |
-| 4 | Teclado Mecánico RGB | $150.75 | Accesorios | 25 | 2026-02-10 |
-| 5 | Webcam Logitech 1080p | $79.99 | Accesorios | 40 | 2026-02-15 |
+### Por Estado:
+- **Completed:** 10 órdenes
+- **Pending:** 3 órdenes
+- **Failed:** 1 orden
+- **Cancelled:** 1 orden
 
-### Estadísticas
+### Por Ubicación:
+- Madrid: 4 órdenes
+- Barcelona: 3 órdenes
+- Valencia: 2 órdenes
+- Sevilla: 2 órdenes
+- Bilbao: 2 órdenes
 
-**Por categoría:**
-- Accesorios: 3 productos (60%)
-- Electrónica: 2 productos (40%)
+## Monto Total Generado
+**€12,289.90**
 
-**Por precio:**
-- Mínimo: $79.99
-- Máximo: $1200.50
-- Promedio Accesorios: $110.24
-- Promedio Electrónica: $825.25
-
-**Por stock:**
-- Total unidades: 138
-- Promedio: 27.6 por producto
-
-### Queries útiles
-
-**Contar documentos:**
-```bash
-curl -u admin:OpenSearch@2026 -k "https://localhost:9200/productos/_count"
-```
-
-**Filtrar por categoría:**
-```bash
-curl -u admin:OpenSearch@2026 -k -X GET "https://localhost:9200/productos/_search" \
--H "Content-Type: application/json" \
--d '{"query": {"term": {"categoria": "Electrónica"}}}'
-```
-
-**Agrupar por categoría:**
-```
-GET productos/_search
-{
-  "size": 0,
-  "aggs": {
-    "por_categoria": {
-      "terms": {"field": "categoria"}
-    }
-  }
-}
-```
-
-**Precio promedio por categoría:**
-```
-GET productos/_search
-{
-  "size": 0,
-  "aggs": {
-    "por_categoria": {
-      "terms": {"field": "categoria"},
-      "aggs": {
-        "precio_promedio": {"avg": {"field": "precio"}}
-      }
-    }
-  }
-}
-```
-
-**Filtrar por rango de precio:**
-```
-GET productos/_search
-{
-  "query": {
-    "range": {
-      "precio": {"gte": 100, "lte": 500}
-    }
-  }
-}
-```
-
-### Método de carga
-
-**1. Crear índice:**
-```bash
-curl -u admin:OpenSearch@2026 -k -X PUT "https://localhost:9200/productos" \
--H "Content-Type: application/json" \
--d '{
-  "settings": {
-    "number_of_shards": 1,
-    "number_of_replicas": 0
-  },
-  "mappings": {
-    "properties": {
-      "nombre": {"type": "text"},
-      "precio": {"type": "float"},
-      "categoria": {"type": "keyword"},
-      "stock": {"type": "integer"},
-      "fecha_creacion": {"type": "date"}
-    }
-  }
-}'
-```
-
-**2. Cargar documentos:**
-```bash
-curl -u admin:OpenSearch@2026 -k -X POST "https://localhost:9200/productos/_doc" \
--H "Content-Type: application/json" \
--d '{
-  "nombre": "Laptop Dell XPS 13",
-  "precio": 1200.50,
-  "categoria": "Electrónica",
-  "stock": 15,
-  "fecha_creacion": "2026-01-15"
-}'
-```
+### Desglose:
+- Electronics: $7,589.93
+- Fashion: $4,699.97
 
 ---
 
