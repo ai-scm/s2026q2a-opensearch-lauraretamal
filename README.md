@@ -9,21 +9,60 @@ Implementar un entorno local de OpenSearch, cargar dataset de ejemplo, crear un 
 - Navegador web
 - curl (para queries REST)
 
-### 1. Instalación local con Docker Compose
-- Configuración de 2 nodos OpenSearch
-- OpenSearch Dashboards en puerto 5601
-- Cluster name: opensearch-cluster
+### 1. Guía de Instalación - OpenSearch Local
 
-**Levantar entorno:**
+## Paso 1: Preparar Entorno
+
 ```bash
-docker compose up -d
+cd C:\
+mkdir opensearch-project
+cd opensearch-project
 ```
 
-**Verificar:**
+## Paso 2: Crear docker-compose.yml
+
+Crear archivo `docker-compose.yml` con la configuración de OpenSearch y Dashboards.
+
 ```bash
-docker compose ps
-curl -u admin:OpenSearch@2026 -k https://localhost:9200
+notepad docker-compose.yml
 ```
+
+## Paso 3: Levantar Contenedores
+
+```bash
+docker-compose up -d
+```
+
+Esperar 2-3 minutos a que inicialice.
+
+## Paso 4: Verificar Estado
+
+```bash
+docker ps
+```
+
+Deberías ver dos contenedores:
+- `opensearch-node` (estado: Healthy)
+- `opensearch-dashboards` (estado: Up)
+
+## Paso 5: Acceder a OpenSearch Dashboards
+
+1. Abre navegador
+2. Ve a: `http://localhost:5601`
+3. Usuario: `admin`
+4. Contraseña: `OpenSearch@2024Secure`
+
+## Paso 6: Crear Index Pattern
+
+1. Management → Dashboards Management → Index patterns
+2. Create index pattern
+3. Name: `opensearch_dashboards_sample_data_logs`
+4. Timestamp field: `timestamp`
+5. Create
+
+## Paso 7: Cargar Datos
+
+Dev Tools → Ejecutar consultas bulk
 
 ### 2. Ingesta de datos de ejemplo
 
