@@ -131,7 +131,7 @@ Dataset de órdenes de compra en línea con información de clientes, productos,
 - Bilbao: 2 órdenes
 
 ## Monto Total Generado
-**€12,289.90**
+**$12,289.90**
 
 ### Desglose:
 - Electronics: $7,589.93
